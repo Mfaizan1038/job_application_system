@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Applicants for {{ job.title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+
+<h1>Applicants for "{{ job.title }}"</h1>
+<a href="{% url 'employer_page' %}" class="btn btn-secondary mb-3">⬅ Back to Jobs</a>
+
+{% if applications %}
+    <ul class="list-group">
+        {% for app in applications %}
+            <li class="list-group-item">
+                <strong>{{ app.employee.username }}</strong> - Applied at {{ app.applied_at }}<br>
+                <em>Cover Letter:</em> {{ app.cover_letter|default:"(No cover letter)" }}<br>
+                {% if app.cv %}
+                    <a href="{{ app.cv.url }}" target="_blank" class="btn btn-sm btn-success mt-2">View CV</a>
+                {% else %}
+                    <span class="text-muted">No CV uploaded</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No applicants yet for this job.</p>
+{% endif %}
+
+</body>
+</html>

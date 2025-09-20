@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+
+<h1>Employee Dashboard</h1>
+<a href="{% url 'home_page' %}" class="btn btn-secondary mb-3">Back to Home</a>
+<a href="{% url 'logout' %}" class="btn btn-danger mb-3">Logout</a>
+
+<h1>Available Jobs</h1>
+<ul class="list-group">
+    {% for job in jobs %}
+        <li class="list-group-item">
+            <h4>{{ job.title }}</h4>
+            <p>{{ job.description }}</p>
+            <p><strong>Requirements:</strong> {{ job.requirments }}</p>
+            <p><strong>Salary:</strong> {{ job.salary }}</p>
+            <p><strong>Deadline:</strong> {{ job.deadline }}</p>
+            <a href="{% url 'apply_job' job.id %}" class="btn btn-primary">Apply</a>
+        </li>
+    {% empty %}
+        <li class="list-group-item">No jobs available right now.</li>
+    {% endfor %}
+</ul>
+
+
+
+</body>
+</html>

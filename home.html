@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container text-center mt-5">
+
+    <h1 class="mb-4">Welcome, {{ request.user.username }}</h1>
+
+    <a href="{% url 'employee_page' %}" class="btn btn-info btn-lg m-2">Go to Employee Page</a>
+    <a href="{% url 'employer_page' %}" class="btn btn-warning btn-lg m-2">Go to Employer Page</a>
+
+    <br><br>
+    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+
+</body>
+</html>
